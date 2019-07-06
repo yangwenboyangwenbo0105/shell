@@ -1,0 +1,14 @@
+#!/bin/bash
+
+app=kaoshi
+hive=/opt/module/hive/bin/hive
+sql="
+drop table if exists "$app".yourdd;
+create table "$app".yourdd(dt string,acco int) row format delimited fields terminated by '\t' location '/directory/ctable';
+
+insert into "$app".yourdd select tt,dd from (select '2019-02-02' tt,count(*) dd from "$app".myrdd) t1;
+"
+
+$hive -e "$sql"
+
+

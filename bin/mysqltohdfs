@@ -1,0 +1,11 @@
+#!/bin/bash
+table_name=$1
+/opt/module/sqoop/bin/sqoop import \
+--connect jdbc:mysql://hadoop103:3306/rdd \
+--username root \
+--password 123456 \
+--table $table_name \
+--target-dir /gaga/rdd \
+--delete-target-dir \
+--num-mappers 1 \
+--fields-terminated-by "\t"
